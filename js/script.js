@@ -17,13 +17,22 @@ function loadData() {
     var cityStr = $('#city').val();
     var address = streetStr + ', ' + cityStr;
 
+
+    if (!streetStr && !cityStr) {
+        address = "Memphis, TN";
+    }
+
     $greeting.text('So, you want to live at ' + address + '?');
 
 
     // load streetview
     var streetviewUrl = 'http://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address + '';
-    $body.append('<img class="bgimg" src="' + streetviewUrl + '">');
+    $body.append('<img class="bgimg" src="' + streetviewUrl + '&key=AIzaSyD9V4_Pg6d2LE8l4laim8arZ3rJeWcxDkI">');
 
+
+    // what if nothing is returned?
+
+    // picture is low quality--looks bad!
 
     // load nytimes
     
@@ -33,3 +42,6 @@ function loadData() {
 };
 
 $('#form-container').submit(loadData);
+
+// Bypass form--just load directly
+loadData();
